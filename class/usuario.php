@@ -111,6 +111,21 @@ class Usuario{
 
 	}
 
+	public function delete(){
+		$sql = new Sql();
+
+		$sql->query("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
+			":ID"=>$this->getIdusuario()
+		));
+
+		//apagando a memoria do objeto
+		//Eu poderia tb jogar valores null
+		$this->setIdusuario(0);
+		$this->setDeslogin("");
+		$this->setDessenha("");
+		$this->setDtcadastro(new DateTime());
+	}
+
 	public function update($usuario, $senha){
 		
 		$this->setDeslogin($usuario);
